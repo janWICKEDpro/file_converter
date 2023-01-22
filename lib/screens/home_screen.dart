@@ -1,71 +1,53 @@
+import 'package:file_converter/bloc/bottom_nav_bloc/bottom_nav_cubit.dart';
 import 'package:file_converter/props.dart';
+import 'package:file_converter/screens/history.dart';
+import 'package:file_converter/screens/select_file.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Home extends StatelessWidget {
+import '../bloc/bottom_nav_bloc/bottom_nav_state.dart';
+
+class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  List<Widget> screens = [SelectFile(), History()];
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: primaryColor,
-        title: const Text(
-          "Super Converter Pro Max",
-          style: TextStyle(color: Colors.white),
+    return BlocBuilder<BottomNavCubit, BottomNav>(builder: (context, state) {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: primaryColor,
+          title: const Text(
+            "Super Converter Pro Max",
+            style: TextStyle(color: Colors.white),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              "Select a file to convert",
-              style: TextStyle(color: primaryColor, fontSize: 25),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            Card(
-              color: Colors.white,
-              elevation: 5,
-              child: Container(
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                    border: Border(
-                        top: BorderSide(color: primaryColor, width: 2.5),
-                        left: BorderSide(color: primaryColor, width: 2.5),
-                        right: BorderSide(color: primaryColor, width: 2.5),
-                        bottom: BorderSide(color: primaryColor, width: 2.5))),
-                child: IconButton(
-                  //enableFeedback: true,
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.add,
-                    size: 90,
-                  ),
-                  color: primaryColor,
-                ),
+        body: screens[state.currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor: primaryColor,
+            showUnselectedLabels: false,
+            enableFeedback: true,
+            currentIndex: state.currentIndex,
+            onTap: (index) {
+              BlocProvider.of<BottomNavCubit>(context).changeIndex(index);
+            },
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home_max),
+                label: "Convert",
               ),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: primaryColor,
-          showUnselectedLabels: false,
-          enableFeedback: true,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_max),
-              label: "Convert",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.file_copy),
-              label: "Conversions",
-            ),
-          ]),
-    );
+              BottomNavigationBarItem(
+                icon: Icon(Icons.file_copy),
+                label: "Conversions",
+              ),
+            ]),
+      );
+    });
   }
 }
