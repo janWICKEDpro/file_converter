@@ -46,8 +46,8 @@ class SelectFile extends StatelessWidget {
                                   children: [
                                     IconButton(
                                         onPressed: () {
-                                          var filee = file.pickFile();
-                                          print(filee);
+                                          file.pickFile();
+                                          Navigator.pop(context);
                                         },
                                         icon: const Icon(
                                           Icons.file_open,

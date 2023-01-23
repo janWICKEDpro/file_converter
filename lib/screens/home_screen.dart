@@ -1,7 +1,7 @@
 import 'package:file_converter/bloc/bottom_nav_bloc/bottom_nav_cubit.dart';
 import 'package:file_converter/props.dart';
 import 'package:file_converter/screens/history.dart';
-import 'package:file_converter/screens/select_file.dart';
+import 'package:file_converter/screens/select_file_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
