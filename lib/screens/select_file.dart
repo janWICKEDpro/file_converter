@@ -1,9 +1,11 @@
+import 'package:file_converter/business_logic/file_picker_methods.dart';
 import 'package:file_converter/props.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SelectFile extends StatelessWidget {
-  const SelectFile({super.key});
-
+  SelectFile({super.key});
+  var file = FilePickerMethods();
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -33,6 +35,7 @@ class SelectFile extends StatelessWidget {
                 enableFeedback: true,
                 onPressed: () {
                   showModalBottomSheet(
+                      useRootNavigator: true,
                       context: context,
                       builder: (context) => Container(
                             height: 100,
@@ -42,7 +45,10 @@ class SelectFile extends StatelessWidget {
                                 Column(
                                   children: [
                                     IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          var filee = file.pickFile();
+                                          print(filee);
+                                        },
                                         icon: const Icon(
                                           Icons.file_open,
                                           color: primaryColor,
