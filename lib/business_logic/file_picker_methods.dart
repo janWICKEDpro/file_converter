@@ -2,17 +2,16 @@ import 'package:file_picker/file_picker.dart';
 
 class FilePickerMethods {
   //pick files single
-  Future<FilePickerResult?> pickFile() async {
+  Future<PlatformFile?> pickFile() async {
     final file = await FilePicker.platform.pickFiles();
-    print(file!.names);
-    return file;
+    PlatformFile finalFile = file!.files.single;
+    return finalFile;
   }
 
   //pick files multiple
-  Future<FilePickerResult?> pickFiles() async {
+  Future<List<PlatformFile?>> pickFiles() async {
     final file = await FilePicker.platform.pickFiles(allowMultiple: true);
-    print(file!.names);
-    return file;
+    return file!.files;
   }
   //save files to folder
 
