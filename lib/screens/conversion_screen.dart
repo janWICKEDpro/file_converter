@@ -69,6 +69,24 @@ class ConversionScreen extends StatelessWidget {
                           style: TextStyle(color: Colors.white),
                         ),
                       )),
+                ),
+                TextButton(
+                  onPressed: () {
+                    BlocProvider.of<FileCubit>(context).clearPickedFiles();
+                  },
+                  child: Container(
+                      height: 50,
+                      width: 100,
+                      decoration: const BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Cancel",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )),
                 )
               ],
             ),
