@@ -12,6 +12,10 @@ class FilePickerMethods {
     return file.name.substring(0, file.name.lastIndexOf("."));
   }
 
+  String getExtension(PlatformFile file) {
+    return file.name.substring(file.name.lastIndexOf("."));
+  }
+
   //pick files multiple
   Future<List<PlatformFile?>> pickFiles() async {
     final file = await FilePicker.platform.pickFiles(allowMultiple: true);

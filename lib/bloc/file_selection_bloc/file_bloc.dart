@@ -15,7 +15,8 @@ class FileCubit extends Cubit<FileState> {
     emit(FileState(
         files: [file!],
         num: NumberOfFiles.single,
-        name: filePicker.getFileName(file)));
+        name: filePicker.getFileName(file),
+        extension: filePicker.getExtension(file)));
   }
 
   void clearPickedFiles() async {

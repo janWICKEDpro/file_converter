@@ -13,56 +13,65 @@ class ConversionScreen extends StatelessWidget {
     return ListView.builder(
         itemCount: BlocProvider.of<FileCubit>(context).state.files.length,
         itemBuilder: (context, index) {
-          return Column(
-            children: [
-              Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: 50,
-                    width: 50,
-                    color: primaryColor,
-                  ),
-                  Text("${BlocProvider.of<FileCubit>(context).state.name}"),
-                  const Icon(
-                    Icons.arrow_forward,
-                    size: 30,
-                    color: primaryColor,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 150.0, right: 150),
-                    child: DropdownButtonFormField<FileExtensions>(
-                        value: FileExtensions.none,
-                        items: FileExtensions.values
-                            .map((e) => DropdownMenuItem<FileExtensions>(
-                                  value: e,
-                                  child: Text("${e.name}"),
-                                ))
-                            .toList(),
-                        onChanged: (item) {}),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              TextButton(
-                onPressed: () {},
-                child: Container(
-                    height: 50,
-                    width: 100,
-                    decoration: const BoxDecoration(
-                      color: primaryColor,
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "Convert",
-                        style: TextStyle(color: Colors.white),
+          return Form(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(icons[
+                                  BlocProvider.of<FileCubit>(context)
+                                      .state
+                                      .extension]!)),
+                        ),
                       ),
-                    )),
-              )
-            ],
+                      Text("${BlocProvider.of<FileCubit>(context).state.name}"),
+                      Container(
+                        width: 100,
+                        child: DropdownButtonFormField<FileExtensions>(
+                            isExpanded: true,
+                            isDense: true,
+                            value: FileExtensions.none,
+                            items: FileExtensions.values
+                                .map((e) => DropdownMenuItem<FileExtensions>(
+                                      value: e,
+                                      child: Text("${e.name}"),
+                                    ))
+                                .toList(),
+                            onChanged: (item) {}),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Container(
+                      height: 50,
+                      width: 100,
+                      decoration: const BoxDecoration(
+                        color: primaryColor,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Convert",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )),
+                )
+              ],
+            ),
           );
         });
   }
