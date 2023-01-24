@@ -3,7 +3,8 @@ import 'package:file_picker/file_picker.dart';
 
 class FileState {
   NumberOfFiles? num;
-  List<PlatformFile>? files;
+  String? name;
+  List<PlatformFile?> files;
 
-  FileState({this.files, this.num});
+  FileState({required this.files, this.num, this.name});
 }

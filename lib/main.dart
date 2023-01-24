@@ -1,4 +1,5 @@
 import 'package:file_converter/bloc/bottom_nav_bloc/bottom_nav_cubit.dart';
+import 'package:file_converter/bloc/file_selection_bloc/file_bloc.dart';
 import 'package:file_converter/routes.dart';
 
 import 'package:flutter/material.dart';
@@ -13,8 +14,13 @@ class MainApp extends StatelessWidget {
   final router = Routes();
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => BottomNavCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => BottomNavCubit(),
+        ),
+        BlocProvider(create: (context) => FileCubit())
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         // showPerformanceOverlay: true,

@@ -7,11 +7,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'file_state.dart';
 
 class FileCubit extends Cubit<FileState> {
-  FileCubit() : super(FileState());
+  FileCubit() : super(FileState(files: []));
 
   void pickFile() async {
     final filePicker = FilePickerMethods();
     final file = await filePicker.pickFile();
-    emit(FileState(files: [file!], num: NumberOfFiles.single));
+    emit(FileState(
+        files: [file!],
+        num: NumberOfFiles.single,
+        name: filePicker.getFileName(file)));
+  }
+
+  void clearPickedFiles() async {
+    emit(FileState(files: []));
   }
 }
