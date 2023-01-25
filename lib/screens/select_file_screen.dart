@@ -77,7 +77,12 @@ class SelectFile extends StatelessWidget {
                                           Column(
                                             children: [
                                               IconButton(
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    BlocProvider.of<FileCubit>(
+                                                            context)
+                                                        .pickFiles();
+                                                    Navigator.pop(context);
+                                                  },
                                                   icon: const Icon(
                                                     Icons.file_copy,
                                                     color: primaryColor,
