@@ -1,21 +1,28 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
+import 'package:file_converter/business_logic/file.dart';
 import 'package:file_converter/enums.dart';
 import 'package:file_picker/file_picker.dart';
 
 class FileState {
   NumberOfFiles? num;
-  FileExtensions conversionExtension;
   String? name;
   List<String>? names;
-  List<String>? extensions;
-  String? extension;
-  List<PlatformFile?> files;
+  List<FileExtensions?>? extensions;
+  FileExtensions? extension;
+  List<MyFile> files;
 
-  FileState(
-      {required this.files,
-      this.num,
-      this.name,
-      this.names,
-      this.extensions,
-      this.extension,
-      this.conversionExtension = FileExtensions.none});
+  FileState({
+    required this.files,
+    this.num,
+    this.name,
+    this.names,
+    this.extensions,
+    this.extension,
+  });
+
+  @override
+  String toString() {
+    return "${files},${num}, ${name}, ${names}, ${extension}, $extensions";
+  }
 }

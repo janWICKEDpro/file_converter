@@ -10,15 +10,17 @@ class ConversionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          flex: 1,
-          child: ListView.builder(
-              itemCount: BlocProvider.of<FileCubit>(context).state.files.length,
-              itemBuilder: (context, index) {
-                return Form(
-                  child: Column(
+    return Form(
+      key: dropDownKey,
+      child: Column(
+        children: [
+          Expanded(
+            flex: 1,
+            child: ListView.builder(
+                itemCount:
+                    BlocProvider.of<FileCubit>(context).state.files.length,
+                itemBuilder: (context, index) {
+                  return Column(
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 20.0),
@@ -66,15 +68,35 @@ class ConversionScreen extends StatelessWidget {
                                   validator: (val) {
                                     if (val == FileExtensions.none) {
                                       return "error";
-                                    } else if (val.toString() ==
+                                    } else if (BlocProvider.of<FileCubit>(
+                                                        context)
+                                                    .state
+                                                    .num ==
+                                                NumberOfFiles.single &&
+                                            val ==
+                                                BlocProvider.of<FileCubit>(
+                                                        context)
+                                                    .state
+                                                    .extension ||
                                         BlocProvider.of<FileCubit>(context)
-                                            .state
-                                            .extension) return "error";
+                                                    .state
+                                                    .num ==
+                                                NumberOfFiles.multiple &&
+                                            val ==
+                                                BlocProvider.of<FileCubit>(
+                                                        context)
+                                                    .state
+                                                    .extensions![index]) {
+                                      print(val.toString());
+                                      return "select valid extension";
+                                    }
+                                    return null;
                                   },
                                   isExpanded: true,
                                   isDense: true,
                                   value: BlocProvider.of<FileCubit>(context)
                                       .state
+                                      .files[index]
                                       .conversionExtension,
                                   items: FileExtensions.values
                                       .map((e) =>
@@ -85,9 +107,11 @@ class ConversionScreen extends StatelessWidget {
                                       .toList(),
                                   onChanged: (extensions) {
                                     BlocProvider.of<FileCubit>(context)
-                                        .setConversionExtension(extensions!);
+                                        .setConversionExtension(
+                                            extensions!, index);
                                     print(BlocProvider.of<FileCubit>(context)
                                         .state
+                                        .files[index]
                                         .conversionExtension);
                                   }),
                             ),
@@ -95,52 +119,56 @@ class ConversionScreen extends StatelessWidget {
                         ),
                       ),
                     ],
-                  ),
-                );
-              }),
-        ),
-        Expanded(
-          flex: 1,
-          child: Column(
-            children: [
-              TextButton(
-                onPressed: () {},
-                child: Container(
-                    height: 50,
-                    width: 100,
-                    decoration: const BoxDecoration(
-                      color: primaryColor,
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "Convert",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    )),
-              ),
-              TextButton(
-                onPressed: () {
-                  BlocProvider.of<FileCubit>(context).clearPickedFiles();
-                },
-                child: Container(
-                    height: 50,
-                    width: 100,
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "Cancel",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    )),
-              )
-            ],
+                  );
+                }),
           ),
-        ),
-      ],
+          Expanded(
+            flex: 1,
+            child: Column(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    if (dropDownKey.currentState!.validate()) {
+                      print(BlocProvider.of<FileCubit>(context).state);
+                    }
+                  },
+                  child: Container(
+                      height: 50,
+                      width: 100,
+                      decoration: const BoxDecoration(
+                        color: primaryColor,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Convert",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )),
+                ),
+                TextButton(
+                  onPressed: () {
+                    BlocProvider.of<FileCubit>(context).clearPickedFiles();
+                  },
+                  child: Container(
+                      height: 50,
+                      width: 100,
+                      decoration: const BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          "Cancel",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      )),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

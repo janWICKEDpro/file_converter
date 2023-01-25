@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:file_converter/business_logic/file.dart';
 import 'package:file_converter/business_logic/file_picker_methods.dart';
 import 'package:file_converter/enums.dart';
 import 'package:file_picker/file_picker.dart';
@@ -14,7 +15,7 @@ class FileCubit extends Cubit<FileState> {
     final filePicker = FilePickerMethods();
     final file = await filePicker.pickFile();
     emit(FileState(
-        files: [file!],
+        files: [MyFile(file: file!, conversionExtension: FileExtensions.none)],
         num: NumberOfFiles.single,
         name: filePicker.getFileName(file),
         extension: filePicker.getExtension(file)));
@@ -24,14 +25,17 @@ class FileCubit extends Cubit<FileState> {
     final filePicker = FilePickerMethods();
     final file = await filePicker.pickFiles();
     emit(FileState(
-        files: [...file],
+        files: [
+          ...file.map(
+              (e) => MyFile(file: e!, conversionExtension: FileExtensions.none))
+        ],
         num: NumberOfFiles.multiple,
         names: filePicker.getFileNames(file),
         extensions: filePicker.getExtensions(file)));
   }
 
-  void setConversionExtension(FileExtensions extensions) {
-    state.conversionExtension = extensions;
+  void setConversionExtension(FileExtensions extensions, int index) {
+    state.files[index].conversionExtension = extensions;
     emit(state);
   }
 

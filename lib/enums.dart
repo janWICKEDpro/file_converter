@@ -4,4 +4,5 @@ enum FileExtensions {
   none,
   pdf,
   docx,
+  jpg,
 }

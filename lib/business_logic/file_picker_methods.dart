@@ -1,3 +1,5 @@
+import 'package:file_converter/enums.dart';
+import 'package:file_converter/props.dart';
 import 'package:file_picker/file_picker.dart';
 
 class FilePickerMethods {
@@ -16,11 +18,11 @@ class FilePickerMethods {
     return files.map((file) => getFileName(file)).toList();
   }
 
-  String getExtension(PlatformFile? file) {
-    return file!.name.substring(file.name.lastIndexOf("."));
+  FileExtensions? getExtension(PlatformFile? file) {
+    return extensionMap[file!.name.substring(file.name.lastIndexOf("."))];
   }
 
-  List<String> getExtensions(List<PlatformFile?> files) {
+  List<FileExtensions?>? getExtensions(List<PlatformFile?> files) {
     return files.map((file) => getExtension(file)).toList();
   }
 
