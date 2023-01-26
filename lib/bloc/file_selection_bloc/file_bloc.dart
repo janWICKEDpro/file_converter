@@ -1,9 +1,7 @@
-import 'dart:io';
-
 import 'package:file_converter/business_logic/file.dart';
 import 'package:file_converter/business_logic/file_picker_methods.dart';
 import 'package:file_converter/enums.dart';
-import 'package:file_picker/file_picker.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'file_state.dart';

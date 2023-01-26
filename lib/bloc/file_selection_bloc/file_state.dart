@@ -22,6 +22,6 @@ class FileState {
 
   @override
   String toString() {
-    return "${files},${num}, ${name}, ${names}, ${extension}, $extensions";
+    return "FileState( file: $files, numberOFFiles: $num, name: $name, names: $names, extension: $extension, extensions $extensions)";
   }
 }

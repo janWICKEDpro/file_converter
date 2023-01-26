@@ -5,4 +5,9 @@ class MyFile {
   PlatformFile? file;
   FileExtensions? conversionExtension;
   MyFile({this.file, this.conversionExtension});
+
+  @override
+  String toString() {
+    return "MyFile( file: $file, extension: $conversionExtension)";
+  }
 }

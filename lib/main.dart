@@ -29,9 +29,9 @@ class MainApp extends StatelessWidget {
             disabledColor: Colors.black,
             useMaterial3: true,
             bottomNavigationBarTheme:
-                BottomNavigationBarThemeData(elevation: 10),
+                const BottomNavigationBarThemeData(elevation: 10),
             primaryIconTheme:
-                IconThemeData(color: Colors.deepOrangeAccent, size: 30),
+                const IconThemeData(color: Colors.deepOrangeAccent, size: 30),
             primaryColor: Colors.deepOrangeAccent,
             backgroundColor: Colors.deepOrangeAccent),
         themeMode: ThemeMode.dark,

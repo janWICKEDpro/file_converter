@@ -1,6 +1,5 @@
 import 'package:file_converter/bloc/file_selection_bloc/file_bloc.dart';
 import 'package:file_converter/bloc/file_selection_bloc/file_state.dart';
-import 'package:file_converter/business_logic/file_picker_methods.dart';
 import 'package:file_converter/enums.dart';
 import 'package:file_converter/props.dart';
 import 'package:file_converter/screens/conversion_screen.dart';
@@ -49,7 +48,7 @@ class SelectFile extends StatelessWidget {
                             showModalBottomSheet(
                                 useRootNavigator: true,
                                 context: context,
-                                builder: (context) => Container(
+                                builder: (context) => SizedBox(
                                       height: 100,
                                       child: Row(
                                         mainAxisAlignment:
