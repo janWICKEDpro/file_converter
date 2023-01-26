@@ -7,7 +7,7 @@ const primaryColor = Colors.deepOrangeAccent;
 
 Map<FileExtensions, String> icons = {
   FileExtensions.docx: "assets/images/docx.jpg",
-  FileExtensions.pdf: "assets/images/pdf.png",
+  FileExtensions.pdf: "assets/images/pdf1.png",
   FileExtensions.jpg: "assets/images/jpg.ico"
 };
 
