@@ -1,1 +1,3 @@
-class CloudConvert {}
+class CloudConvertMethods {
+  //import file
+}
