@@ -1,5 +1,5 @@
-import 'package:file_converter/business_logic/file.dart';
-import 'package:file_converter/business_logic/file_picker_methods.dart';
+import 'package:file_converter/data/models/file.dart';
+import 'package:file_converter/data/file_picker_methods.dart';
 import 'package:file_converter/enums.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';

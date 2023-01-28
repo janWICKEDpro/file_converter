@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_brace_in_string_interps
-
-import 'package:file_converter/business_logic/file.dart';
+import 'package:file_converter/data/models/file.dart';
 import 'package:file_converter/enums.dart';
 
 class FileState {
