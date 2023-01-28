@@ -1,4 +1,4 @@
-import 'package:file_converter/bloc/bottom_nav_bloc/bottom_nav_state.dart';
+import 'package:file_converter/business_logic/bloc/bottom_nav_bloc/bottom_nav_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BottomNavCubit extends Cubit<BottomNav> {

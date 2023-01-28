@@ -1,5 +1,5 @@
-import 'package:file_converter/bloc/file_selection_bloc/file_bloc.dart';
-import 'package:file_converter/bloc/file_selection_bloc/file_state.dart';
+import 'package:file_converter/business_logic/bloc/file_selection_bloc/file_bloc.dart';
+import 'package:file_converter/business_logic/bloc/file_selection_bloc/file_state.dart';
 import 'package:file_converter/enums.dart';
 import 'package:file_converter/props.dart';
 import 'package:file_converter/screens/conversion_screen.dart';
