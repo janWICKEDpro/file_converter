@@ -15,4 +15,14 @@ class CloudConvertMethods {
       return {};
     }
   }
+
+  //get download link
+  Future<String> downloadLink(Map<String, dynamic> response) async {
+    return "";
+  }
+
+  //get download links
+  Future<List<String>> downloadLinks(Map<String, dynamic> response) async {
+    return [];
+  }
 }
