@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:file_converter/data/models/file.dart';
 import 'package:file_converter/data/file_picker_methods.dart';
 import 'package:file_converter/constants/enums.dart';
-import 'package:flutter/foundation.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,9 +15,9 @@ class FileCubit extends Cubit<FileState> {
     final filePicker = FilePickerMethods();
     final file = await filePicker.pickFile();
     if (file != null) {
+      // /// unit8List is null PROBLEM!!!
       final uint8list = file.bytes;
       String base64 = base64Encode(uint8list!.toList());
-      print(base64);
       emit(FileState(
           files: [
             MyFile(
@@ -37,10 +36,13 @@ class FileCubit extends Cubit<FileState> {
   void pickFiles() async {
     final filePicker = FilePickerMethods();
     final file = await filePicker.pickFiles();
+
     emit(FileState(
         files: [
-          ...file.map(
-              (e) => MyFile(file: e!, conversionExtension: FileExtensions.none))
+          ...file.map((e) => MyFile(
+              file: e!,
+              conversionExtension: FileExtensions.none,
+              base64: base64Encode(e.bytes!.toList())))
         ],
         num: NumberOfFiles.multiple,
         names: filePicker.getFileNames(file),

@@ -1,11 +1,11 @@
-import 'package:file_converter/enums.dart';
-import 'package:file_converter/props.dart';
+import 'package:file_converter/constants/enums.dart';
+import 'package:file_converter/constants/props.dart';
 import 'package:file_picker/file_picker.dart';
 
 class FilePickerMethods {
   //pick files single
   Future<PlatformFile?> pickFile() async {
-    final file = await FilePicker.platform.pickFiles();
+    final file = await FilePicker.platform.pickFiles(withData: true);
     PlatformFile finalFile = file!.files.single;
     return finalFile;
   }

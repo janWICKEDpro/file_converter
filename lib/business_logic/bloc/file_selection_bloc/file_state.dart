@@ -1,6 +1,6 @@
 // ignore_for_file: unnecessary_brace_in_string_interps
 import 'package:file_converter/data/models/file.dart';
-import 'package:file_converter/enums.dart';
+import 'package:file_converter/constants/enums.dart';
 
 class FileState {
   NumberOfFiles? num;

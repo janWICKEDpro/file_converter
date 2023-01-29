@@ -1,4 +1,4 @@
-import 'package:file_converter/enums.dart';
+import 'package:file_converter/constants/enums.dart';
 import 'package:flutter/material.dart';
 
 const primaryColor = Colors.deepOrangeAccent;
