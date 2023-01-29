@@ -1,9 +1,9 @@
-import 'package:file_converter/props.dart';
+import 'package:file_converter/constants/props.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../business_logic/bloc/file_selection_bloc/file_bloc.dart';
-import '../enums.dart';
+import '../constants/enums.dart';
 
 class ConversionScreen extends StatelessWidget {
   const ConversionScreen({super.key});
