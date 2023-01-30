@@ -15,19 +15,22 @@ class FileCubit extends Cubit<FileState> {
     final filePicker = FilePickerMethods();
     final file = await filePicker.pickFile();
     if (file != null) {
-      // /// unit8List is null PROBLEM!!!
       final uint8list = file.bytes;
       String base64 = base64Encode(uint8list!.toList());
-      emit(FileState(
+      emit(
+        FileState(
           files: [
             MyFile(
-                file: file,
-                conversionExtension: FileExtensions.none,
-                base64: base64)
+              file: file,
+              conversionExtension: FileExtensions.none,
+              base64: base64,
+            )
           ],
           num: NumberOfFiles.single,
           name: filePicker.getFileName(file),
-          extension: filePicker.getExtension(file)));
+          extension: filePicker.getExtension(file),
+        ),
+      );
     } else {
       print("Emit other state");
     }
@@ -38,15 +41,19 @@ class FileCubit extends Cubit<FileState> {
     final file = await filePicker.pickFiles();
 
     emit(FileState(
-        files: [
-          ...file.map((e) => MyFile(
-              file: e!,
-              conversionExtension: FileExtensions.none,
-              base64: base64Encode(e.bytes!.toList())))
-        ],
-        num: NumberOfFiles.multiple,
-        names: filePicker.getFileNames(file),
-        extensions: filePicker.getExtensions(file)));
+      files: [
+        ...file.map(
+          (e) => MyFile(
+            file: e!,
+            conversionExtension: FileExtensions.none,
+            base64: base64Encode(e.bytes!.toList()),
+          ),
+        )
+      ],
+      num: NumberOfFiles.multiple,
+      names: filePicker.getFileNames(file),
+      extensions: filePicker.getExtensions(file),
+    ));
   }
 
   void setConversionExtension(FileExtensions extensions, int index) {
