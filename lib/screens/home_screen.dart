@@ -16,7 +16,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Widget> screens = [SelectFile(), History()];
+  List<Widget> screens = [const SelectFile(), const History()];
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BottomNavCubit, BottomNav>(builder: (context, state) {
