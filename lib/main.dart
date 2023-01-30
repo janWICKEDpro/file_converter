@@ -24,6 +24,7 @@ class MainApp extends StatelessWidget {
       child: MaterialApp(
         title: "Flutter app",
         debugShowCheckedModeBanner: false,
+
         // showPerformanceOverlay: true,
         // restorationScopeId: ,
         theme: ThemeData(

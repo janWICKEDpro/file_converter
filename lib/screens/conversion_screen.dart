@@ -87,7 +87,6 @@ class ConversionScreen extends StatelessWidget {
                                                         context)
                                                     .state
                                                     .extensions![index]) {
-                                      print(val.toString());
                                       return "select valid extension";
                                     }
                                     return null;
@@ -109,10 +108,6 @@ class ConversionScreen extends StatelessWidget {
                                     BlocProvider.of<FileCubit>(context)
                                         .setConversionExtension(
                                             extensions!, index);
-                                    print(BlocProvider.of<FileCubit>(context)
-                                        .state
-                                        .files[index]
-                                        .conversionExtension);
                                   }),
                             ),
                           ],
