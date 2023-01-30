@@ -3,11 +3,12 @@ import "package:http/http.dart" as http;
 import '../../business_logic/bloc/file_selection_bloc/file_state.dart';
 
 class CloudConvertMethods {
+  final String api = "https://sync.api.cloudconvert.com/v2/jobs";
   //import-convert-export file
   Future<Map<String, dynamic>> convertFile(FileState file) async {
     final Map<String, dynamic> body = {};
     try {
-      final response = await http.post(Uri.parse(""),
+      final response = await http.post(Uri.parse(api),
           body: body, headers: {"Authorization": "Bearer "});
       return {};
     } catch (e) {
