@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import "package:http/http.dart" as http;
 
 import '../../business_logic/bloc/file_selection_bloc/file_state.dart';
@@ -10,7 +12,8 @@ class CloudConvertMethods {
     try {
       final response = await http.post(Uri.parse(api),
           body: body, headers: {"Authorization": "Bearer "});
-      return {};
+
+      return jsonDecode(response.body) as Map<String, dynamic>;
     } catch (e) {
       print(e);
       return {};
@@ -18,8 +21,8 @@ class CloudConvertMethods {
   }
 
   //get download link
-  Future<String> downloadLink(Map<String, dynamic> response) async {
-    return "";
+  String downloadLink(Map<String, dynamic> response) {
+    return response[""];
   }
 
   //get download links
