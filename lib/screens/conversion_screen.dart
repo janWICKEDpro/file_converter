@@ -6,7 +6,7 @@ import '../business_logic/bloc/file_selection_bloc/file_bloc.dart';
 import '../constants/enums.dart';
 
 class ConversionScreen extends StatelessWidget {
-  const ConversionScreen({super.key});
+  ConversionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -124,7 +124,7 @@ class ConversionScreen extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     if (dropDownKey.currentState!.validate()) {
-                      print(BlocProvider.of<FileCubit>(context).state);
+                      Navigator.of(context).pushNamed("download");
                     }
                   },
                   child: Container(

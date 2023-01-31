@@ -1,3 +1,4 @@
+import 'package:file_converter/screens/download_screen.dart';
 import 'package:file_converter/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,10 @@ class Routes {
       case "history":
         return MaterialPageRoute(
           builder: (context) => const Home(),
+        );
+      case "download":
+        return MaterialPageRoute(
+          builder: (context) => Download(),
         );
       default:
         return MaterialPageRoute(
