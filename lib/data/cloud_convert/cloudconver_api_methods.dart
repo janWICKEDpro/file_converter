@@ -10,7 +10,8 @@ class CloudConvertMethods {
   //import-convert-export file
   Future<Map<String, dynamic>> convertFile(FileState file) async {
     List<String> filename = file.files[0].file!.name.split('.');
-    filename.insert(1, '[convert].');
+    filename.last = reverseExtensionMap[file.files[0].conversionExtension]!;
+    filename.insert(file.files[0].file!.name.lastIndexOf("."), '[convert].');
     String finalFileName = '';
     for (var word in filename) {
       finalFileName += word;
@@ -43,7 +44,7 @@ class CloudConvertMethods {
       },
       'tag': 'jobbuilder'
     };
-    print(body);
+
     try {
       final response = await http.post(Uri.parse(api),
           body: jsonEncode(body),
