@@ -9,6 +9,8 @@ class CloudConvertMethods {
   final String api = "https://sync.api.cloudconvert.com/v2/jobs";
   //import-convert-export file
   Future<Map<String, dynamic>> convertFile(FileState file) async {
+    List<String> filename = file.files[0].file!.name.split(".");
+    filename.insert(1, "[convert]");
     final Map<String, dynamic> body = {
       "tasks": {
         "import-1": {
@@ -26,7 +28,7 @@ class CloudConvertMethods {
           "pdf_a": false,
           "include_markup": false,
           "bookmarks": false,
-          "filename": "about[convert].pdf"
+          "filename": filename.toString()
         },
         "export-1": {
           "operation": "export/url",
