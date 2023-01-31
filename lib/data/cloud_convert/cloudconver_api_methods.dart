@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:file_converter/constants/props.dart';
+import 'package:file_converter/data/models/cloudconvert_response.dart';
 import 'package:http/http.dart' as http;
 
 import '../../business_logic/bloc/file_selection_bloc/file_state.dart';
@@ -8,7 +9,7 @@ import '../../business_logic/bloc/file_selection_bloc/file_state.dart';
 class CloudConvertMethods {
   final String api = 'https://sync.api.cloudconvert.com/v2/jobs';
   //import-convert-export file
-  Future<Map<String, dynamic>> convertFile(FileState file) async {
+  Future<CloudConvertResponse?> convertFile(FileState file) async {
     List<String> filename = file.files[0].file!.name.split('.');
     filename.last = reverseExtensionMap[file.files[0].conversionExtension]!;
     filename.insert(file.files[0].file!.name.lastIndexOf("."), '[convert].');
@@ -26,8 +27,9 @@ class CloudConvertMethods {
         },
         'task-1': {
           'operation': 'convert',
-          'input_format': 'jpg',
-          'output_format': 'png',
+          'input_format': reverseExtensionMap[file.extension],
+          'output_format':
+              reverseExtensionMap[file.files[0].conversionExtension],
           'input': ['import-1'],
           'optimize_print': true,
           'pdf_a': false,
@@ -52,11 +54,10 @@ class CloudConvertMethods {
             'Authorization': 'Bearer $apiKey',
             'Content-type': 'application/json'
           });
-      print(response.body);
-      return jsonDecode(response.body);
+      return CloudConvertResponse.fromJson(jsonDecode(response.body));
     } catch (e) {
       print(e);
-      return {};
+      return CloudConvertResponse();
     }
   }
 
