@@ -2,7 +2,7 @@ import 'package:file_converter/constants/props.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../business_logic/bloc/file_selection_bloc/file_bloc.dart';
+import '../business_logic/cubits/file_selection_bloc/file_bloc.dart';
 import '../constants/enums.dart';
 
 class ConversionScreen extends StatelessWidget {
