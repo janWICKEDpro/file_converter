@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:file_converter/business_logic/bloc/file_selection_bloc/file_bloc.dart';
+import 'package:file_converter/business_logic/cubits/file_selection_bloc/file_bloc.dart';
 import 'package:file_converter/constants/props.dart';
 import 'package:file_converter/data/cloud_convert/cloudconver_api_methods.dart';
 import 'package:flutter/material.dart';
