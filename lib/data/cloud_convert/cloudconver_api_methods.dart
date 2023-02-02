@@ -9,12 +9,12 @@ import '../../business_logic/cubits/file_selection_bloc/file_state.dart';
 
 class CloudConvertMethods {
   final String api = 'https://sync.api.cloudconvert.com/v2/jobs';
+  late String finalFileName;
   //import-convert-export file
   Future<CloudConvertResponse?> convertFile(FileState file) async {
     List<String> filename = file.files[0].file!.name.split('.');
     filename.last = reverseExtensionMap[file.files[0].conversionExtension]!;
     filename.insert(filename.indexOf(filename.last), '[convert].');
-    String finalFileName = '';
     for (var word in filename) {
       finalFileName += word;
     }
