@@ -1,5 +1,5 @@
-import 'package:file_converter/business_logic/bloc/bottom_nav_bloc/bottom_nav_cubit.dart';
-import 'package:file_converter/business_logic/bloc/file_selection_bloc/file_bloc.dart';
+import 'package:file_converter/business_logic/cubits/bottom_nav_bloc/bottom_nav_cubit.dart';
+import 'package:file_converter/business_logic/cubits/file_selection_bloc/file_bloc.dart';
 import 'package:file_converter/constants/routes.dart';
 
 import 'package:flutter/material.dart';
