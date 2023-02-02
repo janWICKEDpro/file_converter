@@ -12,14 +12,16 @@ Map<FileExtensions, String> icons = {
 };
 
 Map<String, FileExtensions> extensionMap = {
-  ".jpg": FileExtensions.jpg,
-  ".pdf": FileExtensions.pdf,
-  ".docx": FileExtensions.docx
+  "jpg": FileExtensions.jpg,
+  "pdf": FileExtensions.pdf,
+  "docx": FileExtensions.docx,
+  "png": FileExtensions.png
 };
 Map<FileExtensions, String> reverseExtensionMap = {
-  FileExtensions.jpg: ".jpg",
-  FileExtensions.pdf: ".pdf",
-  FileExtensions.docx: ".docx"
+  FileExtensions.jpg: "jpg",
+  FileExtensions.pdf: "pdf",
+  FileExtensions.docx: "docx",
+  FileExtensions.png: "png"
 };
 
 final dropDownKey = GlobalKey<FormState>();

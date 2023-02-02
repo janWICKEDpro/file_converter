@@ -19,7 +19,7 @@ class Download extends StatelessWidget {
           future: cloudConvert.convertFile(fileState),
           builder: ((context, snapshot) {
             if (snapshot.hasData) {
-              if (snapshot.data?.data!["status"] == "finished") {
+              if (snapshot.data?.data["status"] == "finished") {
                 return Center(
                   child: ElevatedButton(
                     style: ButtonStyle(

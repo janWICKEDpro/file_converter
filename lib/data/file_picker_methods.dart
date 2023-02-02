@@ -19,7 +19,7 @@ class FilePickerMethods {
   }
 
   FileExtensions? getExtension(PlatformFile? file) {
-    return extensionMap[file!.name.substring(file.name.lastIndexOf("."))];
+    return extensionMap[file!.name.substring(file.name.lastIndexOf(".") + 1)];
   }
 
   List<FileExtensions?>? getExtensions(List<PlatformFile?> files) {
