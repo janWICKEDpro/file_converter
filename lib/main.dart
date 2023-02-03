@@ -1,4 +1,5 @@
 import 'package:file_converter/business_logic/cubits/bottom_nav_bloc/bottom_nav_cubit.dart';
+import 'package:file_converter/business_logic/cubits/file_conversion/file_conversion_cubit.dart';
 import 'package:file_converter/business_logic/cubits/file_selection_bloc/file_bloc.dart';
 import 'package:file_converter/constants/routes.dart';
 
@@ -21,7 +22,7 @@ class MainApp extends StatelessWidget {
         BlocProvider(
           create: (context) => BottomNavCubit(),
         ),
-        BlocProvider(create: (context) => FileCubit())
+        BlocProvider(create: (context) => FileCubit()),
       ],
       child: MaterialApp(
         title: "Flutter app",
