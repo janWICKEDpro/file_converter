@@ -1,4 +1,4 @@
-import 'package:file_converter/screens/download_screen.dart';
+import 'package:file_converter/screens/download_screen_single.dart';
 import 'package:file_converter/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 

@@ -6,7 +6,7 @@ import '../business_logic/cubits/file_selection_bloc/file_bloc.dart';
 import '../constants/enums.dart';
 
 class ConversionScreen extends StatelessWidget {
-  ConversionScreen({super.key});
+  const ConversionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

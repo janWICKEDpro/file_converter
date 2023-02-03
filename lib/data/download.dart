@@ -8,6 +8,7 @@ class DownloadClass {
   Future<bool> checkPermission() async {
     if (Platform.isAndroid) {
       final status = await Permission.storage.status;
+      print(status);
       if (status != PermissionStatus.granted) {
         final result = await Permission.storage.request();
         if (result == PermissionStatus.granted) {
@@ -23,12 +24,8 @@ class DownloadClass {
   }
 
   Future<String?> _findLocalPath() async {
-    if (Platform.isAndroid) {
-      return "/sdcard/download/";
-    } else {
-      var directory = await getApplicationDocumentsDirectory();
-      return '${directory.path}${Platform.pathSeparator}Download';
-    }
+    var directory = await getApplicationDocumentsDirectory();
+    return '${directory.path}${Platform.pathSeparator}Downloads';
   }
 
   Future<void> prepareSaveDir() async {

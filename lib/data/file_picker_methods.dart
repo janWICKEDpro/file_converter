@@ -28,7 +28,8 @@ class FilePickerMethods {
 
   //pick files multiple
   Future<List<PlatformFile?>> pickFiles() async {
-    final file = await FilePicker.platform.pickFiles(allowMultiple: true);
+    final file = await FilePicker.platform
+        .pickFiles(allowMultiple: true, withData: true);
     return file!.files;
   }
 
