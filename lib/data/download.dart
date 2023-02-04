@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+/// to handle downloading and storing the file in it rigt location
 class DownloadClass {
   late String localPath;
   Future<bool> checkPermission() async {
