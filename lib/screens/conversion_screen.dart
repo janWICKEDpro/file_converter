@@ -36,10 +36,11 @@ class ConversionScreen extends StatelessWidget {
                                       image: DecorationImage(
                                           fit: BoxFit.cover,
                                           image: AssetImage(icons[
-                                              BlocProvider.of<FileCubit>(
-                                                      context)
-                                                  .state
-                                                  .extension]!)),
+                                                  BlocProvider.of<FileCubit>(
+                                                          context)
+                                                      .state
+                                                      .extension] ??
+                                              'assets/images/noimage.jpg')),
                                     ),
                                   )
                                 : Container(

@@ -47,9 +47,7 @@ class CloudConvertMethods {
               'Authorization': 'Bearer $apiKey',
               'Content-type': 'application/json'
             });
-        log(response.body);
         i--;
-        print("i is $i\n");
 
         //add the link of the converted file.
         links.add(downloadLink(

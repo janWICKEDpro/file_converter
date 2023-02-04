@@ -32,7 +32,6 @@ class DownloadClass {
   Future<void> prepareSaveDir() async {
     localPath = (await _findLocalPath())!;
 
-    print(localPath);
     final savedDir = Directory(localPath);
     bool hasExisted = await savedDir.exists();
     if (!hasExisted) {
