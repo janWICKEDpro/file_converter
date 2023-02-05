@@ -40,7 +40,7 @@ class ConversionScreen extends StatelessWidget {
                                                           context)
                                                       .state
                                                       .extension] ??
-                                              'assets/images/noimage.jpg')),
+                                              'assets/images/noimage.ico')),
                                     ),
                                   )
                                 : Container(
