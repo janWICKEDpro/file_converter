@@ -36,10 +36,10 @@ class CloudConvertMethods {
   Future<List<String>> convertFiles(FileState file) async {
     List<String> links = [];
     Map<String, Object> body;
-    int i = 0;
-    while (i < file.files.length) {
-      finalFileName = newFileName(file, i);
-      body = requestBody(file, i);
+    int index = 0;
+    while (index < file.files.length) {
+      finalFileName = newFileName(file, index);
+      body = requestBody(file, index);
       try {
         final response = await http.post(Uri.parse(api),
             body: jsonEncode(body),
@@ -47,7 +47,7 @@ class CloudConvertMethods {
               'Authorization': 'Bearer $apiKey',
               'Content-type': 'application/json'
             });
-        i--;
+        index--;
 
         //add the link of the converted file.
         links.add(downloadLink(
@@ -67,11 +67,11 @@ class CloudConvertMethods {
     return response.data['tasks'][0]['result']['files'][1]['url'];
   }
 
-  String newFileName(FileState file, int i) {
+  String newFileName(FileState file, int index) {
     List<String> filename = [];
     String result = "";
-    filename = file.files[i].file!.name.split('.');
-    filename.last = reverseExtensionMap[file.files[i].conversionExtension]!;
+    filename = file.files[index].file!.name.split('.');
+    filename.last = reverseExtensionMap[file.files[index].conversionExtension]!;
     filename.insert(filename.indexOf(filename.last), '[convert].');
     for (var word in filename) {
       result += word;
@@ -79,21 +79,21 @@ class CloudConvertMethods {
     return result;
   }
 
-  Map<String, Object> requestBody(FileState file, int i) {
+  Map<String, Object> requestBody(FileState file, int index) {
     return {
       'tasks': {
         'import-1': {
           'operation': 'import/base64',
-          'file': file.files[i].base64,
-          'filename': file.files[i].file!.name
+          'file': file.files[index].base64,
+          'filename': file.files[index].file!.name
         },
         'task-1': {
           'operation': 'convert',
           'input_format': file.num == NumberOfFiles.multiple
-              ? reverseExtensionMap[file.extensions![i]]
+              ? reverseExtensionMap[file.extensions![index]]
               : reverseExtensionMap[file.extension],
           'output_format':
-              reverseExtensionMap[file.files[i].conversionExtension],
+              reverseExtensionMap[file.files[index].conversionExtension],
           'input': ['import-1'],
           'optimize_print': true,
           'pdf_a': false,

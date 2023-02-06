@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 
 const primaryColor = Colors.deepOrangeAccent;
 
-// List<String> extensions = ["none", ".docx", ".pdf", ".jpg"];
-
 Map<FileExtensions, String> icons = {
   FileExtensions.docx: "assets/images/docx.ico",
   FileExtensions.pdf: "assets/images/pdf.ico",

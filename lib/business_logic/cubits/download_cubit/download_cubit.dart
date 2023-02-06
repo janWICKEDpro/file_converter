@@ -1,10 +1,14 @@
 import 'package:bloc/bloc.dart';
+import 'package:file_converter/data_layer/download_methods.dart';
 import 'package:meta/meta.dart';
 
 part 'download_state.dart';
 
 class DownloadCubit extends Cubit<DownloadState> {
   DownloadCubit() : super(DownloadInitial());
+  final downloadClass = DownloadClass();
+
+  void download(String downloadLink) {}
 
   void emitDownloading() {
     emit(Downloading());

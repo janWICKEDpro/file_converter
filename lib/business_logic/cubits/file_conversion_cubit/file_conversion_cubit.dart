@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:file_converter/business_logic/cubits/file_selection_cubit/file_state.dart';
 import 'package:file_converter/constants/enums.dart';
 
-import 'package:file_converter/data_layer/cloud_convert/cloudconver_api_methods.dart';
+import 'package:file_converter/data_layer/cloud_convert/cloudconvert_api_methods.dart';
 import 'package:file_converter/data_layer/models/cloudconvert_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,10 +49,5 @@ class FileConversionCubit extends Cubit<FileConversionState> {
 
   void conversionFailed() {
     emit(FileConversionFailed());
-  }
-
-  @override
-  Future<void> close() {
-    return super.close();
   }
 }
