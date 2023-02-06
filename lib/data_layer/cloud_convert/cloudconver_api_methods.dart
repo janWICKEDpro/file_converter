@@ -3,10 +3,10 @@ import 'dart:developer';
 
 import 'package:file_converter/constants/enums.dart';
 import 'package:file_converter/constants/props.dart';
-import 'package:file_converter/data/models/cloudconvert_response.dart';
+import 'package:file_converter/data_layer/models/cloudconvert_response.dart';
 import 'package:http/http.dart' as http;
 
-import '../../business_logic/cubits/file_selection_bloc/file_state.dart';
+import '../../business_logic/cubits/file_selection_cubit/file_state.dart';
 
 class CloudConvertMethods {
   final String api = 'https://sync.api.cloudconvert.com/v2/jobs';

@@ -34,7 +34,5 @@ class FilePickerMethods {
     return file!.files;
   }
 
-  //save files to folder
-
   //get files from folder
 }

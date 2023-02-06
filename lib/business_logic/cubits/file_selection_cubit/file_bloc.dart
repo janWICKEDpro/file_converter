@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:file_converter/data/models/file.dart';
-import 'package:file_converter/data/file_picker_methods.dart';
+import 'package:file_converter/data_layer/models/file.dart';
+import 'package:file_converter/data_layer/file_picker_methods.dart';
 import 'package:file_converter/constants/enums.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';

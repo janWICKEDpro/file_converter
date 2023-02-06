@@ -1,6 +1,5 @@
-import 'package:file_converter/business_logic/cubits/bottom_nav_bloc/bottom_nav_cubit.dart';
-import 'package:file_converter/business_logic/cubits/file_conversion/file_conversion_cubit.dart';
-import 'package:file_converter/business_logic/cubits/file_selection_bloc/file_bloc.dart';
+import 'package:file_converter/business_logic/cubits/bottom_nav_cubit/bottom_nav_cubit.dart';
+import 'package:file_converter/business_logic/cubits/file_selection_cubit/file_bloc.dart';
 import 'package:file_converter/constants/routes.dart';
 
 import 'package:flutter/material.dart';
@@ -31,14 +30,14 @@ class MainApp extends StatelessWidget {
         // showPerformanceOverlay: true,
         // restorationScopeId: ,
         theme: ThemeData(
-            disabledColor: Colors.black,
-            useMaterial3: true,
-            bottomNavigationBarTheme:
-                const BottomNavigationBarThemeData(elevation: 10),
-            primaryIconTheme:
-                const IconThemeData(color: Colors.deepOrangeAccent, size: 30),
-            primaryColor: Colors.deepOrangeAccent,
-            backgroundColor: Colors.deepOrangeAccent),
+          disabledColor: Colors.black,
+          useMaterial3: true,
+          bottomNavigationBarTheme:
+              const BottomNavigationBarThemeData(elevation: 10),
+          primaryIconTheme:
+              const IconThemeData(color: Colors.deepOrangeAccent, size: 30),
+          primaryColor: Colors.deepOrangeAccent,
+        ),
         themeMode: ThemeMode.dark,
         onGenerateRoute: router.onGenerateRoute,
         initialRoute: '/',

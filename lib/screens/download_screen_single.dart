@@ -1,5 +1,4 @@
-import 'package:file_converter/business_logic/cubits/file_conversion/file_conversion_cubit.dart';
-import 'package:file_converter/business_logic/cubits/file_selection_bloc/file_bloc.dart';
+import 'package:file_converter/business_logic/cubits/file_conversion_cubit/file_conversion_cubit.dart';
 import 'package:file_converter/constants/props.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

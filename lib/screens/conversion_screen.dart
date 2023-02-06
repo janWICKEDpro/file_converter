@@ -2,7 +2,7 @@ import 'package:file_converter/constants/props.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../business_logic/cubits/file_selection_bloc/file_bloc.dart';
+import '../business_logic/cubits/file_selection_cubit/file_bloc.dart';
 import '../constants/enums.dart';
 
 class ConversionScreen extends StatelessWidget {
@@ -50,10 +50,11 @@ class ConversionScreen extends StatelessWidget {
                                       image: DecorationImage(
                                           fit: BoxFit.cover,
                                           image: AssetImage(icons[
-                                              BlocProvider.of<FileCubit>(
-                                                      context)
-                                                  .state
-                                                  .extensions![index]]!)),
+                                                  BlocProvider.of<FileCubit>(
+                                                          context)
+                                                      .state
+                                                      .extensions![index]] ??
+                                              'assets/images/noimage.ico')),
                                     ),
                                   ),
                             (BlocProvider.of<FileCubit>(context).state.num ==
