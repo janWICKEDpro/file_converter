@@ -2,12 +2,13 @@ import 'package:file_converter/business_logic/cubits/download_cubit/download_cub
 import 'package:file_converter/business_logic/cubits/file_conversion_cubit/file_conversion_cubit.dart';
 import 'package:file_converter/business_logic/cubits/file_selection_cubit/file_bloc.dart';
 import 'package:file_converter/constants/props.dart';
+import 'package:file_converter/data_layer/cloud_convert/cloudconvert_api_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DownloadScreen extends StatelessWidget {
-  const DownloadScreen({super.key});
-
+  DownloadScreen({super.key});
+  final cloudConvert = CloudConvertMethods();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,13 +96,8 @@ class DownloadScreen extends StatelessWidget {
                                   (states) => primaryColor)),
                           onPressed: () async {
                             /// Download the converted file via the link
-                            BlocProvider.of<DownloadCubit>(context).download(
-                                state.downloadLink!,
-                                BlocProvider.of<FileCubit>(context)
-                                    .state
-                                    .files[0]
-                                    .file!
-                                    .name);
+                            BlocProvider.of<DownloadCubit>(context)
+                                .download(state.downloadLink!, state.fileName!);
                           },
                           child: const Text(
                             "Download",

@@ -25,10 +25,12 @@ class CloudConvertMethods {
             'Content-type': 'application/json'
           });
       log(response.body);
-      return CloudConvertResponse.fromJson(jsonDecode(response.body));
+
+      return CloudConvertResponse.fromJson(
+          jsonDecode(response.body), finalFileName);
     } catch (e) {
       print(e);
-      return CloudConvertResponse({});
+      return CloudConvertResponse();
     }
   }
 
@@ -50,8 +52,8 @@ class CloudConvertMethods {
         index--;
 
         //add the link of the converted file.
-        links.add(downloadLink(
-            CloudConvertResponse.fromJson(jsonDecode(response.body))));
+        links.add(downloadLink(CloudConvertResponse.fromJson(
+            jsonDecode(response.body), finalFileName)));
         finalFileName = '';
       } catch (e) {
         log(e.toString());
@@ -64,7 +66,7 @@ class CloudConvertMethods {
 
   //get download link
   String downloadLink(CloudConvertResponse response) {
-    return response.data['tasks'][0]['result']['files'][1]['url'];
+    return response.data!['tasks'][0]['result']['files'][1]['url'];
   }
 
   String newFileName(FileState file, int index) {

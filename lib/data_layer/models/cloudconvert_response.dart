@@ -1,8 +1,10 @@
 class CloudConvertResponse {
-  CloudConvertResponse(this.data);
-  Map<String, dynamic> data;
+  CloudConvertResponse({this.data, this.finalName});
+  Map<String, dynamic>? data;
+  String? finalName;
 
-  factory CloudConvertResponse.fromJson(Map<String, dynamic> response) {
-    return CloudConvertResponse(response['data']);
+  factory CloudConvertResponse.fromJson(
+      Map<String, dynamic> response, String name) {
+    return CloudConvertResponse(data: response['data'], finalName: name);
   }
 }

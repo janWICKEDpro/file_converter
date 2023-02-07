@@ -26,7 +26,11 @@ class DownloadClass {
 
   Future<String?> _findLocalPath() async {
     var directory = await getApplicationDocumentsDirectory();
-    return '${directory.path}${Platform.pathSeparator}Downloads';
+    if (Platform.isAndroid) {
+      return 'storage/emulated/0/Download';
+    }
+
+    return '${directory.path}${Platform.pathSeparator}Download';
   }
 
   Future<void> prepareSaveDir() async {

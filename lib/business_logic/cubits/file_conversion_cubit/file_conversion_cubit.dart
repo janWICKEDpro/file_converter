@@ -22,7 +22,7 @@ class FileConversionCubit extends Cubit<FileConversionState> {
     CloudConvertResponse? response;
     if (fileState.num == NumberOfFiles.single) {
       response = await cloudConvertMethods.convertFile(fileState);
-      if (response.data["status"] == "finished") {
+      if (response.data!["status"] == "finished") {
         conversionCompleted(response);
       } else {
         conversionFailed();
@@ -39,7 +39,8 @@ class FileConversionCubit extends Cubit<FileConversionState> {
 
   void conversionCompleted(CloudConvertResponse response) {
     emit(FileConversionCompleted(
-        downloadLink: response.data['tasks'][0]['result']['files'][1]['url']));
+        fileName: response.finalName,
+        downloadLink: response.data!['tasks'][0]['result']['files'][1]['url']));
   }
 
   void conversionsCompleted(List<String> downloadLinks) {

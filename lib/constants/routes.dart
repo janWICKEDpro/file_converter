@@ -18,7 +18,7 @@ class Routes {
           builder: (context) => BlocProvider(
             create: (context) => FileConversionCubit(
                 fileState: BlocProvider.of<FileCubit>(context).state),
-            child: const DownloadScreen(),
+            child: DownloadScreen(),
           ),
         );
       default:
