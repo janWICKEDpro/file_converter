@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:file_converter/data_layer/download_methods.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 part 'download_state.dart';
