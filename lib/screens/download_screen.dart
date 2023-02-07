@@ -48,15 +48,14 @@ class DownloadScreen extends StatelessWidget {
                             children: const [
                               Text(
                                 "Download Complete",
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 69, 230, 152)),
+                                style: TextStyle(color: primaryColor),
                               ),
                               SizedBox(
                                 height: 100,
                               ),
                               Icon(
                                 Icons.check_circle_outline_sharp,
-                                color: primaryColor,
+                                color: Color.fromARGB(255, 69, 230, 152),
                               )
                             ],
                           ),
@@ -85,6 +84,8 @@ class DownloadScreen extends StatelessWidget {
                                   (states) => primaryColor)),
                           onPressed: () async {
                             /// Download the converted file via the link
+                            BlocProvider.of<DownloadCubit>(context)
+                                .download(state.downloadLink!, state.fileName!);
                           },
                           child: const Text(
                             "Retry",
