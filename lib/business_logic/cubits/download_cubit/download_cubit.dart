@@ -1,3 +1,4 @@
+import 'package:file_converter/business_logic/cubits/download_progress/download_progress_cubit.dart';
 import 'package:file_converter/data_layer/cloud_convert/cloudconvert_api_methods.dart';
 import 'package:file_converter/data_layer/download_methods.dart';
 import 'package:file_converter/data_layer/models/cloudconvert_response.dart';
@@ -8,8 +9,9 @@ import 'package:meta/meta.dart';
 part 'download_state.dart';
 
 class DownloadCubit extends Cubit<DownloadState> {
-  DownloadCubit() : super(DownloadInitial());
+  DownloadCubit(this.downloadProgress) : super(DownloadInitial());
   final downloadClass = DownloadClass();
+  final DownloadProgressCubit? downloadProgress;
 
   void download(String downloadLink, String name) async {
     var dio = Dio();
@@ -17,7 +19,13 @@ class DownloadCubit extends Cubit<DownloadState> {
     await downloadClass.prepareSaveDir();
     emitDownloading();
     try {
-      await dio.download(downloadLink, "${downloadClass.localPath}/$name");
+      await dio.download(
+        downloadLink,
+        "${downloadClass.localPath}/$name",
+        onReceiveProgress: (count, total) {
+          downloadProgress?.emitProgress(count, total);
+        },
+      );
       emitDownloadCompleted();
     } catch (e) {
       print(e);
@@ -35,5 +43,11 @@ class DownloadCubit extends Cubit<DownloadState> {
 
   void emitDownloadFailed() {
     emit(DownloadFailed());
+  }
+
+  @override
+  Future<void> close() {
+    downloadProgress?.close();
+    return super.close();
   }
 }

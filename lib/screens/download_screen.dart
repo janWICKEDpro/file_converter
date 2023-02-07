@@ -1,4 +1,6 @@
 import 'package:file_converter/business_logic/cubits/download_cubit/download_cubit.dart';
+import 'package:file_converter/business_logic/cubits/download_progress/download_progress_cubit.dart';
+import 'package:file_converter/business_logic/cubits/download_progress/download_progress_state.dart';
 import 'package:file_converter/business_logic/cubits/file_conversion_cubit/file_conversion_cubit.dart';
 import 'package:file_converter/business_logic/cubits/file_selection_cubit/file_bloc.dart';
 import 'package:file_converter/constants/props.dart';
@@ -19,95 +21,104 @@ class DownloadScreen extends StatelessWidget {
             /// single file
 
             return BlocProvider(
-              create: (context) => DownloadCubit(),
-              child: Center(
-                child: BlocBuilder<DownloadCubit, DownloadState>(
-                  builder: (context, downloadState) {
-                    if (downloadState is Downloading) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
-                          Text(
-                            "Downloading",
-                            style: TextStyle(color: primaryColor),
-                          ),
-                          SizedBox(height: 100),
-                          CircularProgressIndicator(
-                            color: primaryColor,
-                          )
-                        ],
-                      );
-                    } else if (downloadState is DownloadComplete) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
-                              Text(
-                                "Download Complete",
-                                style: TextStyle(color: primaryColor),
-                              ),
-                              SizedBox(
-                                height: 100,
-                              ),
-                              Icon(
-                                Icons.check_circle_outline_sharp,
-                                color: Color.fromARGB(255, 69, 230, 152),
-                              )
-                            ],
-                          ),
-                          ElevatedButton(
-                              style: ButtonStyle(
-                                  enableFeedback: true,
-                                  backgroundColor:
-                                      MaterialStateColor.resolveWith(
-                                          (states) => primaryColor)),
-                              onPressed: () {
-                                BlocProvider.of<FileCubit>(context)
-                                    .clearPickedFiles();
-                                Navigator.pop(context);
+              create: (context) => DownloadProgressCubit(),
+              child: BlocProvider(
+                create: (context) => DownloadCubit(
+                    BlocProvider.of<DownloadProgressCubit>(context)),
+                child: Center(
+                  child: BlocBuilder<DownloadCubit, DownloadState>(
+                    builder: (context, downloadState) {
+                      if (downloadState is Downloading) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Text(
+                              "Downloading",
+                              style: TextStyle(color: primaryColor),
+                            ),
+                            const SizedBox(height: 100),
+                            BlocBuilder<DownloadProgressCubit,
+                                DownloadProgressState>(
+                              builder: (context, state) {
+                                return LinearProgressIndicator(
+                                  value: state.progress,
+                                );
                               },
-                              child: const Text(
-                                "Finish",
-                                style: TextStyle(color: Colors.white),
-                              ))
-                        ],
-                      );
-                    } else if (downloadState is DownloadFailed) {
-                      return ElevatedButton(
-                          style: ButtonStyle(
-                              enableFeedback: true,
-                              backgroundColor: MaterialStateColor.resolveWith(
-                                  (states) => primaryColor)),
-                          onPressed: () async {
-                            /// Download the converted file via the link
-                            BlocProvider.of<DownloadCubit>(context)
-                                .download(state.downloadLink!, state.fileName!);
-                          },
-                          child: const Text(
-                            "Retry",
-                            style: TextStyle(color: Colors.white),
-                          ));
-                    } else {
-                      return ElevatedButton(
-                          style: ButtonStyle(
-                              enableFeedback: true,
-                              backgroundColor: MaterialStateColor.resolveWith(
-                                  (states) => primaryColor)),
-                          onPressed: () async {
-                            /// Download the converted file via the link
-                            BlocProvider.of<DownloadCubit>(context)
-                                .download(state.downloadLink!, state.fileName!);
-                          },
-                          child: const Text(
-                            "Download",
-                            style: TextStyle(color: Colors.white),
-                          ));
-                    }
-                  },
+                            ),
+                          ],
+                        );
+                      } else if (downloadState is DownloadComplete) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Text(
+                                  "Download Complete",
+                                  style: TextStyle(color: primaryColor),
+                                ),
+                                SizedBox(
+                                  height: 100,
+                                ),
+                                Icon(
+                                  Icons.check_circle_outline_sharp,
+                                  color: Color.fromARGB(255, 69, 230, 152),
+                                )
+                              ],
+                            ),
+                            ElevatedButton(
+                                style: ButtonStyle(
+                                    enableFeedback: true,
+                                    backgroundColor:
+                                        MaterialStateColor.resolveWith(
+                                            (states) => primaryColor)),
+                                onPressed: () {
+                                  BlocProvider.of<FileCubit>(context)
+                                      .clearPickedFiles();
+                                  Navigator.pop(context);
+                                },
+                                child: const Text(
+                                  "Finish",
+                                  style: TextStyle(color: Colors.white),
+                                ))
+                          ],
+                        );
+                      } else if (downloadState is DownloadFailed) {
+                        return ElevatedButton(
+                            style: ButtonStyle(
+                                enableFeedback: true,
+                                backgroundColor: MaterialStateColor.resolveWith(
+                                    (states) => primaryColor)),
+                            onPressed: () async {
+                              /// Download the converted file via the link
+                              BlocProvider.of<DownloadCubit>(context).download(
+                                  state.downloadLink!, state.fileName!);
+                            },
+                            child: const Text(
+                              "Retry",
+                              style: TextStyle(color: Colors.white),
+                            ));
+                      } else {
+                        return ElevatedButton(
+                            style: ButtonStyle(
+                                enableFeedback: true,
+                                backgroundColor: MaterialStateColor.resolveWith(
+                                    (states) => primaryColor)),
+                            onPressed: () async {
+                              /// Download the converted file via the link
+                              BlocProvider.of<DownloadCubit>(context).download(
+                                  state.downloadLink!, state.fileName!);
+                            },
+                            child: const Text(
+                              "Download",
+                              style: TextStyle(color: Colors.white),
+                            ));
+                      }
+                    },
+                  ),
                 ),
               ),
             );
