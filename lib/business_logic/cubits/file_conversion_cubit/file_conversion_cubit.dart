@@ -12,7 +12,6 @@ part 'file_conversion_state.dart';
 class FileConversionCubit extends Cubit<FileConversionState> {
   final cloudConvertMethods = CloudConvertMethods();
   final FileState? fileState;
-  StreamSubscription<FileState>? fileStateSubscription;
 
   FileConversionCubit({@required this.fileState})
       : super(FileConversionInitial()) {

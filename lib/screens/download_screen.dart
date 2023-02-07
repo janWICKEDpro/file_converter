@@ -1,5 +1,6 @@
 import 'package:file_converter/business_logic/cubits/download_cubit/download_cubit.dart';
 import 'package:file_converter/business_logic/cubits/file_conversion_cubit/file_conversion_cubit.dart';
+import 'package:file_converter/business_logic/cubits/file_selection_cubit/file_bloc.dart';
 import 'package:file_converter/constants/props.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,13 +23,15 @@ class DownloadScreen extends StatelessWidget {
                 child: BlocBuilder<DownloadCubit, DownloadState>(
                   builder: (context, downloadState) {
                     if (downloadState is Downloading) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: const [
                           Text(
                             "Downloading",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(color: primaryColor),
                           ),
+                          SizedBox(height: 100),
                           CircularProgressIndicator(
                             color: primaryColor,
                           )
@@ -36,14 +39,19 @@ class DownloadScreen extends StatelessWidget {
                       );
                     } else if (downloadState is DownloadComplete) {
                       return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: const [
                               Text(
                                 "Download Complete",
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 69, 230, 152)),
+                              ),
+                              SizedBox(
+                                height: 100,
                               ),
                               Icon(
                                 Icons.check_circle_outline_sharp,
@@ -57,7 +65,9 @@ class DownloadScreen extends StatelessWidget {
                                   backgroundColor:
                                       MaterialStateColor.resolveWith(
                                           (states) => primaryColor)),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pushNamed(context, "history");
+                              },
                               child: const Text(
                                 "Finish",
                                 style: TextStyle(color: Colors.white),
@@ -85,6 +95,13 @@ class DownloadScreen extends StatelessWidget {
                                   (states) => primaryColor)),
                           onPressed: () async {
                             /// Download the converted file via the link
+                            BlocProvider.of<DownloadCubit>(context).download(
+                                state.downloadLink!,
+                                BlocProvider.of<FileCubit>(context)
+                                    .state
+                                    .files[0]
+                                    .file!
+                                    .name);
                           },
                           child: const Text(
                             "Download",

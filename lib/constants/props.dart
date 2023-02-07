@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 
 const primaryColor = Colors.deepOrangeAccent;
 
-Map<FileExtensions, String> icons = {
+const Map<FileExtensions, String> icons = {
   FileExtensions.docx: "assets/images/docx.ico",
   FileExtensions.pdf: "assets/images/pdf.ico",
   FileExtensions.jpg: "assets/images/jpg.ico"
 };
 
-Map<String, FileExtensions> extensionMap = {
+const Map<String, FileExtensions> extensionMap = {
   "jpg": FileExtensions.jpg,
   "pdf": FileExtensions.pdf,
   "docx": FileExtensions.docx,
   "png": FileExtensions.png
 };
-Map<FileExtensions, String> reverseExtensionMap = {
+
+const Map<FileExtensions, String> reverseExtensionMap = {
   FileExtensions.jpg: "jpg",
   FileExtensions.pdf: "pdf",
   FileExtensions.docx: "docx",
