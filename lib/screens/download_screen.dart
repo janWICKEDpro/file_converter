@@ -67,7 +67,9 @@ class DownloadScreen extends StatelessWidget {
                                       MaterialStateColor.resolveWith(
                                           (states) => primaryColor)),
                               onPressed: () {
-                                Navigator.pushNamed(context, "history");
+                                BlocProvider.of<FileCubit>(context)
+                                    .clearPickedFiles();
+                                Navigator.pop(context);
                               },
                               child: const Text(
                                 "Finish",
