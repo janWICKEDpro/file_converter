@@ -22,7 +22,7 @@ class FileConversionCubit extends Cubit<FileConversionState> {
     CloudConvertResponse? response;
     if (fileState.num == NumberOfFiles.single) {
       response = await cloudConvertMethods.convertFile(fileState);
-      if (response.data!["status"] == "finished") {
+      if (response.data != null && response.data!["status"] == "finished") {
         conversionCompleted(response);
       } else {
         conversionFailed();
