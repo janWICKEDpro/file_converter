@@ -1,7 +1,7 @@
 import 'package:file_converter/constants/enums.dart';
 import 'package:flutter/material.dart';
 
-const primaryColor = Colors.deepOrangeAccent;
+const primaryColor = Color.fromARGB(255, 185, 81, 49);
 
 const Map<FileExtensions, String> icons = {
   FileExtensions.docx: "assets/images/docx.ico",
