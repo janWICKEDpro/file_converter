@@ -21,7 +21,7 @@ class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
     return list.isEmpty
-        ? const Text("No FIles yet")
+        ? const Center(child: Text("No FIles yet"))
         : ListView.builder(
             itemCount: list.length,
             itemBuilder: (context, index) {
