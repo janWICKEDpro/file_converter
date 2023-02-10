@@ -33,11 +33,11 @@ class DownloadClass {
 
         if (!await Directory('storage/emulated/0/Download/converter')
             .exists()) {
-          Directory androidDir =
-              await Directory('storage/emulated/0/Download/converter').create();
-          return androidDir.path;
+          await Directory('storage/emulated/0/Download/converter').create();
         }
+        print("${status}");
       }
+      return 'storage/emulated/0/Download/converter';
     }
 
     return '${directory.path}${Platform.pathSeparator}Download';

@@ -23,8 +23,8 @@ class _HistoryState extends State<History> {
     var status = await Permission.storage.status;
     if (!status.isGranted) {
       await Permission.storage.request();
-      list = listFiles();
     }
+    list = listFiles();
   }
 
   @override
