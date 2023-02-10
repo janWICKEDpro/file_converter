@@ -27,10 +27,16 @@ class DownloadClass {
   Future<String?> _findLocalPath() async {
     var directory = await getApplicationDocumentsDirectory();
     if (Platform.isAndroid) {
-      if (!await Directory('storage/emulated/0/Download/converter').exists()) {
-        Directory androidDir =
-            await Directory('storage/emulated/0/Download/converter').create();
-        return androidDir.path;
+      var status = await Permission.storage.status;
+      if (!status.isGranted) {
+        await Permission.storage.request();
+
+        if (!await Directory('storage/emulated/0/Download/converter')
+            .exists()) {
+          Directory androidDir =
+              await Directory('storage/emulated/0/Download/converter').create();
+          return androidDir.path;
+        }
       }
     }
 

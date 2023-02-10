@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:file_converter/data_layer/list_files.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class History extends StatefulWidget {
   const History({super.key});
@@ -14,8 +15,16 @@ class _HistoryState extends State<History> {
   var list = <FileSystemEntity>[];
   @override
   void initState() {
-    list = listFiles();
+    listStuff();
     super.initState();
+  }
+
+  void listStuff() async {
+    var status = await Permission.storage.status;
+    if (!status.isGranted) {
+      await Permission.storage.request();
+      list = listFiles();
+    }
   }
 
   @override

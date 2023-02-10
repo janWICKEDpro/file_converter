@@ -41,8 +41,20 @@ class DownloadScreen extends StatelessWidget {
                             BlocBuilder<DownloadProgressCubit,
                                 DownloadProgressState>(
                               builder: (context, state) {
-                                return LinearProgressIndicator(
-                                  value: state.progress,
+                                return Column(
+                                  children: [
+                                    LinearProgressIndicator(
+                                      value: state.progress,
+                                      color: Colors.greenAccent,
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        "${state.progress * 100}%",
+                                        style: const TextStyle(
+                                            color: primaryColor),
+                                      ),
+                                    )
+                                  ],
                                 );
                               },
                             ),
