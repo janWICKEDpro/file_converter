@@ -1,7 +1,6 @@
 import 'package:file_converter/business_logic/cubits/download_progress/download_progress_cubit.dart';
-import 'package:file_converter/data_layer/cloud_convert/cloudconvert_api_methods.dart';
+
 import 'package:file_converter/data_layer/download_methods.dart';
-import 'package:file_converter/data_layer/models/cloudconvert_response.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
