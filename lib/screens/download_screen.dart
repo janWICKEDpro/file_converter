@@ -43,13 +43,16 @@ class DownloadScreen extends StatelessWidget {
                               builder: (context, state) {
                                 return Column(
                                   children: [
-                                    LinearProgressIndicator(
-                                      value: state.progress,
-                                      color: Colors.greenAccent,
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: LinearProgressIndicator(
+                                        value: state.progress,
+                                        color: Colors.greenAccent,
+                                      ),
                                     ),
                                     Center(
                                       child: Text(
-                                        "${state.progress * 100}%",
+                                        "${(state.progress * 100).toInt()}%",
                                         style: const TextStyle(
                                             color: primaryColor),
                                       ),
