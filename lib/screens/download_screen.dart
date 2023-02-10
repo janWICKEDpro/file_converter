@@ -37,7 +37,7 @@ class DownloadScreen extends StatelessWidget {
                               "Downloading",
                               style: TextStyle(color: primaryColor),
                             ),
-                            const SizedBox(height: 100),
+                            const SizedBox(height: 50),
                             BlocBuilder<DownloadProgressCubit,
                                 DownloadProgressState>(
                               builder: (context, state) {

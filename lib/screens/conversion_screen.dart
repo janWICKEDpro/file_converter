@@ -59,13 +59,22 @@ class ConversionScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                            (BlocProvider.of<FileCubit>(context).state.num ==
-                                    NumberOfFiles.single)
-                                ? Text(
-                                    "${BlocProvider.of<FileCubit>(context).state.name}")
-                                : Text(BlocProvider.of<FileCubit>(context)
-                                    .state
-                                    .names![index]),
+                            SizedBox(
+                              width: 200,
+                              child: Center(
+                                child: (BlocProvider.of<FileCubit>(context)
+                                            .state
+                                            .num ==
+                                        NumberOfFiles.single)
+                                    ? Text(
+                                        "${BlocProvider.of<FileCubit>(context).state.name}",
+                                        softWrap: true,
+                                      )
+                                    : Text(BlocProvider.of<FileCubit>(context)
+                                        .state
+                                        .names![index]),
+                              ),
+                            ),
                             SizedBox(
                               width: 100,
                               child: DropdownButtonFormField<FileExtensions>(

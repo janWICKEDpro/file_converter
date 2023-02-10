@@ -35,7 +35,6 @@ class DownloadClass {
             .exists()) {
           await Directory('storage/emulated/0/Download/converter').create();
         }
-        print("${status}");
       }
       return 'storage/emulated/0/Download/converter';
     }
