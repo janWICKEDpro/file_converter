@@ -50,7 +50,7 @@ class _HistoryState extends State<History> {
               return ListTile(
                 enableFeedback: true,
                 enabled: true,
-                tileColor: Color.fromARGB(255, 243, 235, 235),
+                tileColor: const Color.fromARGB(255, 243, 235, 235),
                 leading: Container(
                   height: 50,
                   width: 50,
