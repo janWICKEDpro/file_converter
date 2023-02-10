@@ -49,7 +49,7 @@ class CloudConvertMethods {
               'Authorization': 'Bearer $apiKey',
               'Content-type': 'application/json'
             });
-        index--;
+        index++;
 
         //add the link of the converted file.
         links.add(downloadLink(CloudConvertResponse.fromJson(
