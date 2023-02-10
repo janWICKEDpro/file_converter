@@ -33,6 +33,4 @@ class FilePickerMethods {
         .pickFiles(allowMultiple: true, withData: true);
     return file!.files;
   }
-
-  //get files from folder
 }

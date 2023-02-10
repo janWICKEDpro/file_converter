@@ -20,10 +20,12 @@ class _HistoryState extends State<History> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: list.length,
-        itemBuilder: (context, index) {
-          return Text("${list[index]}");
-        });
+    return list.isEmpty
+        ? const Text("No FIles yet")
+        : ListView.builder(
+            itemCount: list.length,
+            itemBuilder: (context, index) {
+              return Text("${list[index]}");
+            });
   }
 }
