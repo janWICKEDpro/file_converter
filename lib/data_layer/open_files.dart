@@ -1,3 +1,5 @@
 import 'package:dio/dio.dart';
 
-void openFiles() {}
+void openFiles() {
+  var dio = Dio();
+}
