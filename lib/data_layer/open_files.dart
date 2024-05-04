@@ -4,8 +4,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 Future openFile(PlatformFile convertedFile) async {
-  final file = File(convertedFile.path!);
-  final Uri uri = Uri.file(file.path);
+  final Uri uri = Uri.file(convertedFile.path);
   if (!File(uri.toFilePath()).existsSync()) {
     throw Exception('$uri does not exist!');
   }
