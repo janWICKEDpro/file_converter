@@ -50,7 +50,10 @@ class _HistoryState extends State<History> {
                               'assets/images/noimage.ico')),
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    BlocProvider.of<HistoryBloc>(context)
+                        .add(OnFileClicked(file: state.convertedFiles![index]));
+                  },
                   title: Text(getFileNameFromFilSystemEntity(
                       state.convertedFiles![index])),
                 );
@@ -61,7 +64,7 @@ class _HistoryState extends State<History> {
           HistoryLoadState.unpermitted => Center(
               child: Column(
                 children: [
-                  Text("Turn on permission to view your converted Files"),
+                  const Text("Turn on permission to view your converted Files"),
                   TextButton(
                     onPressed: () {
                       BlocProvider.of<HistoryBloc>(context)
