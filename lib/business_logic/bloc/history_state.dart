@@ -1,6 +1,13 @@
 part of 'history_bloc.dart';
 
-@immutable
-sealed class HistoryState {}
+class HistoryState {
+  final List<File>? convertedFiles;
+  final bool? loading;
+  HistoryState({this.convertedFiles, this.loading});
 
-final class HistoryInitial extends HistoryState {}
+  HistoryState copyWith({List<File>? convertedFiles, loading}) {
+    return HistoryState(
+        convertedFiles: convertedFiles ?? this.convertedFiles,
+        loading: loading ?? this.loading);
+  }
+}

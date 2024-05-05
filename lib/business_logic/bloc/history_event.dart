@@ -1,4 +1,7 @@
 part of 'history_bloc.dart';
 
-@immutable
 sealed class HistoryEvent {}
+
+class Init extends HistoryEvent {}
+
+class OnFileClicked extends HistoryEvent {}

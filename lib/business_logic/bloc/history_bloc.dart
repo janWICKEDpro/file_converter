@@ -1,13 +1,12 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'dart:io';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'history_event.dart';
 part 'history_state.dart';
 
 class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
-  HistoryBloc() : super(HistoryInitial()) {
-    on<HistoryEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+  HistoryBloc() : super(HistoryState()) {
+    on<Init>((event, emit) async {});
   }
 }
