@@ -1,3 +1,4 @@
+import 'package:file_converter/business_logic/bloc/history_bloc.dart';
 import 'package:file_converter/business_logic/cubits/bottom_nav_cubit/bottom_nav_cubit.dart';
 
 import 'package:file_converter/constants/props.dart';
@@ -16,9 +17,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Widget> screens = [const SelectFile(), const History()];
   @override
   Widget build(BuildContext context) {
+    List<Widget> screens = [
+      const SelectFile(),
+      BlocProvider.value(
+        value: BlocProvider.of<HistoryBloc>(context)..add(Init()),
+        child: const History(),
+      )
+    ];
     return BlocBuilder<BottomNavCubit, BottomNav>(builder: (context, state) {
       return Scaffold(
         appBar: AppBar(

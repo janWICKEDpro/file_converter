@@ -1,10 +1,10 @@
 import 'dart:io';
 
+import 'package:file_converter/business_logic/bloc/history_bloc.dart';
 import 'package:file_converter/constants/enums.dart';
 import 'package:file_converter/constants/props.dart';
-import 'package:file_converter/data_layer/list_files.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class History extends StatefulWidget {
   const History({super.key});
@@ -14,23 +14,6 @@ class History extends StatefulWidget {
 }
 
 class _HistoryState extends State<History> {
-  var list = <FileSystemEntity>[];
-  @override
-  void initState() {
-    listStuff();
-    super.initState();
-  }
-
-  void listStuff() async {
-    var status = await Permission.storage.status;
-    if (!status.isGranted) {
-      await Permission.storage.request();
-    }
-    setState(() {
-      list = listFiles();
-    });
-  }
-
   String getFileNameFromFilSystemEntity(FileSystemEntity file) {
     return file.path.split("/").last;
   }
@@ -42,30 +25,67 @@ class _HistoryState extends State<History> {
 
   @override
   Widget build(BuildContext context) {
-    return list.isEmpty
-        ? const Center(child: Text("You have not converted any files yet !"))
-        : ListView.builder(
-            itemCount: list.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                enableFeedback: true,
-                enabled: true,
-                tileColor: const Color.fromARGB(255, 243, 235, 235),
-                leading: Container(
-                  height: 50,
-                  width: 50,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(icons[
-                                getExtensionFromFileSystemEntity(
-                                    list[index])] ??
-                            'assets/images/noimage.ico')),
+    return BlocBuilder<HistoryBloc, HistoryState>(
+      builder: (context, state) {
+        return switch (state.loading) {
+          null => throw UnimplementedError(),
+          HistoryLoadState.empty =>
+            const Center(child: Text("You have not converted any files yet !")),
+          HistoryLoadState.success => ListView.builder(
+              itemCount: state.convertedFiles?.length ?? 0,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  enableFeedback: true,
+                  enabled: true,
+                  tileColor: const Color.fromARGB(255, 243, 235, 235),
+                  leading: Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(icons[
+                                  getExtensionFromFileSystemEntity(
+                                      state.convertedFiles![index])] ??
+                              'assets/images/noimage.ico')),
+                    ),
                   ),
-                ),
-                onTap: () {},
-                title: Text(getFileNameFromFilSystemEntity(list[index])),
-              );
-            });
+                  onTap: () {},
+                  title: Text(getFileNameFromFilSystemEntity(
+                      state.convertedFiles![index])),
+                );
+              }),
+          HistoryLoadState.loading => const Center(
+              child: CircularProgressIndicator(),
+            ),
+          HistoryLoadState.unpermitted => Center(
+              child: Column(
+                children: [
+                  Text("Turn on permission to view your converted Files"),
+                  TextButton(
+                    onPressed: () {
+                      BlocProvider.of<HistoryBloc>(context)
+                          .add(OnRequestPermissions());
+                    },
+                    child: Container(
+                        height: 50,
+                        width: 100,
+                        decoration: const BoxDecoration(
+                          color: primaryColor,
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "Permit",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        )),
+                  ),
+                ],
+              ),
+            ),
+        };
+      },
+    );
   }
 }

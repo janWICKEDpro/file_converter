@@ -1,3 +1,4 @@
+import 'package:file_converter/business_logic/bloc/history_bloc.dart';
 import 'package:file_converter/business_logic/cubits/bottom_nav_cubit/bottom_nav_cubit.dart';
 import 'package:file_converter/business_logic/cubits/file_selection_cubit/file_bloc.dart';
 import 'package:file_converter/constants/routes.dart';
@@ -22,6 +23,7 @@ class MainApp extends StatelessWidget {
         BlocProvider(
           create: (context) => BottomNavCubit(),
         ),
+        BlocProvider(lazy: false, create: (context) => HistoryBloc()),
         BlocProvider(create: (context) => FileCubit()),
       ],
       child: MaterialApp(
