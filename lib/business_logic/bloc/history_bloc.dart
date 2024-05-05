@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:file_converter/constants/enums.dart';
 import 'package:file_converter/data_layer/list_files.dart';
+import 'package:file_converter/data_layer/open_files.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -26,6 +27,9 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
       await requestPermission();
       permissionInitializer();
       add(Init());
+    });
+    on<OnFileClicked>((event, emit) async {
+      openFile(event.file);
     });
   }
 
