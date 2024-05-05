@@ -6,7 +6,6 @@ import 'package:file_converter/screens/conversion_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// ignore: must_be_immutable
 class SelectFile extends StatelessWidget {
   const SelectFile({super.key});
   final val = FileExtensions.none;
