@@ -12,7 +12,6 @@ class CloudConvertMethods {
   final String api = 'https://sync.api.cloudconvert.com/v2/jobs';
   late String finalFileName;
 
-  //import-convert-export single file
   Future<CloudConvertResponse> convertFile(FileState file) async {
     finalFileName = newFileName(file, 0);
     final body = requestBody(file, 0);

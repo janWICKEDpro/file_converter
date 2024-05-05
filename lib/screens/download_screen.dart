@@ -34,7 +34,7 @@ class DownloadScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const Text(
-                              "Downloading",
+                              "Downloading File \n Please do not close the app",
                               style: TextStyle(color: primaryColor),
                             ),
                             const SizedBox(height: 50),
@@ -68,9 +68,9 @@ class DownloadScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
+                              children: [
                                 Text(
                                   "Download Complete",
                                   style: TextStyle(color: primaryColor),
@@ -189,9 +189,9 @@ class DownloadScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
+                              children: [
                                 Text(
                                   "Download Complete",
                                   style: TextStyle(color: primaryColor),
