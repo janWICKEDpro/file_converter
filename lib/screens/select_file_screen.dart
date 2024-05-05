@@ -1,6 +1,5 @@
 import 'package:file_converter/business_logic/cubits/file_selection_cubit/file_bloc.dart';
 import 'package:file_converter/business_logic/cubits/file_selection_cubit/file_state.dart';
-import 'package:file_converter/constants/enums.dart';
 import 'package:file_converter/constants/props.dart';
 import 'package:file_converter/screens/conversion_screen.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SelectFile extends StatelessWidget {
   const SelectFile({super.key});
-  final val = FileExtensions.none;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FileCubit, FileState>(
