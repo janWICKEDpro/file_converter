@@ -2,13 +2,13 @@ part of 'history_bloc.dart';
 
 class HistoryState {
   final List<FileSystemEntity>? convertedFiles;
-  final History? loading;
+  final HistoryLoadState? loading;
   final bool? permitted;
   HistoryState({this.convertedFiles, this.loading, this.permitted});
 
   HistoryState copyWith(
       {List<FileSystemEntity>? convertedFiles,
-      History? loading,
+      HistoryLoadState? loading,
       bool? permitted}) {
     return HistoryState(
         convertedFiles: convertedFiles ?? this.convertedFiles,

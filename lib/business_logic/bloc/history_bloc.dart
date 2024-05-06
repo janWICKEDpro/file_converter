@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:file_converter/constants/enums.dart';
 import 'package:file_converter/data_layer/list_files.dart';
@@ -12,15 +13,19 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
   HistoryBloc() : super(HistoryState()) {
     permissionInitializer();
     on<Init>((event, emit) async {
-      emit(state.copyWith(loading: History.loading));
+      log("init first first");
+      print("init first");
+      emit(state.copyWith(loading: HistoryLoadState.loading));
       if (state.permitted == true) {
         final files = await listStuff();
 
         emit(state.copyWith(
             convertedFiles: files,
-            loading: files.isEmpty ? History.empty : History.success));
+            loading: files.isEmpty
+                ? HistoryLoadState.empty
+                : HistoryLoadState.success));
       } else {
-        emit(state.copyWith(loading: History.unpermitted));
+        emit(state.copyWith(loading: HistoryLoadState.unpermitted));
       }
     });
     on<OnRequestPermissions>((event, emit) async {
@@ -34,6 +39,9 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
   }
 
   void permissionInitializer() async {
+    log("permission first");
+
+    print("permission first");
     if (await checkPermission()) {
       // ignore: invalid_use_of_visible_for_testing_member
       emit(state.copyWith(permitted: true));

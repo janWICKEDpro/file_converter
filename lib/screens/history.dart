@@ -63,6 +63,7 @@ class _HistoryState extends State<History> {
             ),
           HistoryLoadState.unpermitted => Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text("Turn on permission to view your converted Files"),
                   TextButton(
