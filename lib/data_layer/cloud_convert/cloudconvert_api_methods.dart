@@ -24,12 +24,15 @@ class CloudConvertMethods {
             'Content-type': 'application/json'
           });
       log(response.body);
-
+      final responseException = errorCodes(response.statusCode);
+      if (responseException != null) {
+        throw responseException;
+      }
       return CloudConvertResponse.fromJson(
           jsonDecode(response.body), finalFileName);
     } catch (e) {
       print(e);
-      return CloudConvertResponse();
+      return CloudConvertFailedResponse();
     }
   }
 
@@ -48,6 +51,11 @@ class CloudConvertMethods {
               'Authorization': 'Bearer $apiKey',
               'Content-type': 'application/json'
             });
+        final responseException = errorCodes(response.statusCode);
+        if (responseException != null) {
+          throw responseException;
+        }
+
         index++;
 
         //add the link of the converted file.
@@ -78,6 +86,16 @@ class CloudConvertMethods {
       result += word;
     }
     return result;
+  }
+
+  Exception? errorCodes(int errorCode) {
+    return switch (errorCode) {
+      422 => Exception("Invalid Data"),
+      503 => Exception("The server is temporarily Unavailable"),
+      500 => Exception("Internal server error"),
+      429 => Exception("Too many requests please try again later"),
+      int() => null,
+    };
   }
 
   Map<String, Object> requestBody(FileState file, int index) {

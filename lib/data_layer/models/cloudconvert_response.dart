@@ -8,3 +8,7 @@ class CloudConvertResponse {
     return CloudConvertResponse(data: response['data'], finalName: name);
   }
 }
+
+class CloudConvertSuccessResponse extends CloudConvertResponse {}
+
+class CloudConvertFailedResponse extends CloudConvertResponse {}
