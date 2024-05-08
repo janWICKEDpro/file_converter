@@ -9,6 +9,6 @@ class MyFile {
 
   @override
   String toString() {
-    return "MyFile( file: $file, extension: $conversionExtension, base64: $base64)";
+    return "File( file: $file, extension: $conversionExtension, base64: $base64)";
   }
 }
